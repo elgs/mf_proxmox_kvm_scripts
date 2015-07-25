@@ -2,7 +2,7 @@
 
 # This script serves the purpose to work with Modules Factory Proxmox module 
 # for WHMCS to expand the file system, disk partition and the disk image file. 
-# Please note this is the non-LVM version of the disk expanding script. 
+# Please note this is the non-LVM version of the disk expansion script. 
 
 # Please note the following things before using this script:
 # 1. This script assumes the KVM template image files are located at 
