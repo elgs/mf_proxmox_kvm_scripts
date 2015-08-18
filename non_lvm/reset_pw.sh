@@ -32,6 +32,7 @@ unset password
 cp root/shadow etc/
 rm root/shadow
 
+
 cd ..
 umount /dev/nbd${mp}p1
 qemu-nbd -d /dev/nbd${mp}

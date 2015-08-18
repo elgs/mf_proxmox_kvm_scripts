@@ -25,14 +25,14 @@ mount /dev/nbd${mp}p1 a
 cd a
 
 ip=${ips}
-mac=${mcs}
+mac=${macs}
 gw=192.99.21.254
 ns1=213.186.33.99
 ns2=8.8.8.8
 ns3=8.8.4.4
 
 # Debian & derivatives (Ubuntu, CrunchBang, SteamOS...)
-if [ -f /usr/bin/apt-get ]; then
+if [ -f usr/bin/apt-get ]; then
 cat > etc/network/interfaces << EOF
 auto lo eth0
 iface lo inet loopback
@@ -56,7 +56,7 @@ fi
 
 # Set network
 # Redhat & derivatives (CentOS, Scientific Linux, ClearOS...)
-if [ -f /usr/bin/yum ]; then
+if [ -f usr/bin/yum ]; then
 cat > etc/sysconfig/network-scripts/ifcfg-eth0 << EOF
 DEVICE=eth0
 BOOTPROTO=none
