@@ -24,8 +24,8 @@ qemu-nbd -c /dev/nbd${mp} vm-${vmid}*
 mount /dev/nbd${mp}p1 a
 cd a
 
-ip=${ips}
-mac=${macs}
+IFS=' ' read ip rest <<< $ips
+IFS=' ' read mac rest <<< $macs
 gw=192.99.21.254
 ns1=213.186.33.99
 ns2=8.8.8.8
