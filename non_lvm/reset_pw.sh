@@ -19,10 +19,11 @@ IN=$@
 
 IFS=',' read varvmid varhostname varusername varpassword varmac varip varnode <<< "$IN";IFS='=' read var1 vmid <<< "$varvmid";IFS='=' read var2 hostname <<< "$varhostname";IFS='=' read var3 password <<< "$varpassword";IFS='=' read var4 username <<< "$varusername";IFS='=' read var5 macs <<< "$varmac";IFS='=' read var6 ips <<< "$varip";IFS='=' read var7 node <<< "$varnode"
 
+mp=$((vmid%10))
 cd "/var/lib/vz/images/${vmid}"
 mkdir -p a
-qemu-nbd -c /dev/nbd0 vm-${vmid}*
-mount /dev/nbd0p1 a
+qemu-nbd -c /dev/nbd${mp} vm-${vmid}*
+mount /dev/nbd${mp}p1 a
 cd a
 
 export password
@@ -30,8 +31,8 @@ perl -pe 's|(?<=root:)[^:]*|crypt($ENV{password},"\$6\$$ENV{password}\$")|e' etc
 unset password
 cp root/shadow etc/
 rm root/shadow
-cd ..
 
-umount /dev/nbd0p1
-qemu-nbd -d /dev/nbd0
+cd ..
+umount /dev/nbd${mp}p1
+qemu-nbd -d /dev/nbd${mp}
 rm -r a
